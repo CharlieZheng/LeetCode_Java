@@ -1,6 +1,6 @@
 package tree;
 
-public class LeetCode563 {
+public class                                                                                                                  LeetCode563 {
     public static void main(String[] args) {
         LeetCode563 leetCode563 = new LeetCode563();
         TreeNode treeNode = new TreeNode(1);
@@ -17,13 +17,8 @@ public class LeetCode563 {
         if (root.left == null && root.right == null) {
             return 0;
         }
-
-        if (root.left == null) {
-            return findTilt(root.right);
-        }
-
-        if (root.right == null) {
-            return findTilt(root.left);
+        if (root.left != null && root.left.left == null && root.left.right == null) {
+//            if ()
         }
         return findTilt(root.left) + findTilt(root.right);
 
