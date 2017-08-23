@@ -8,9 +8,8 @@ public class ACYetLeetCode637 {
     }
 
 
-
     public List<Double> averageOfLevels(TreeNode root) {
-
+        int i = 2;
         return null;
     }
 

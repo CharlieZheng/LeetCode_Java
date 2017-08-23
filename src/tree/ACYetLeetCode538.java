@@ -17,7 +17,8 @@ public class ACYetLeetCode538 {
             if (root.right != null) root.val += root.right.val;
             if (root.left != null) root.left.val += root.val;
         } else {
-            convertBST(root.left);
+            root.val += root.right.val;
+            root.left.val += root.val;
             convertBST(root.right);
         }
 
