@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author hanrong on 2017/5/24.
  */
@@ -6,7 +11,7 @@ public class LeetCode4 {
         LeetCode4 leetCode4 = new LeetCode4();
         int[] num1 = new int[]{};
         int[] num2 = new int[]{1, 2, 3, 4};
-        leetCode4.findMedianSortedArrays2(num1, num2);
+        leetCode4.findMedianSortedArrays(num1, num2);
     }
 
     /**
@@ -146,6 +151,25 @@ public class LeetCode4 {
             return (left + right) / 2f;
         } else {
             return mid / 2f;
+        }
+    }
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int[] a = new int[nums1.length + nums2.length];
+        for (int i = 0; i < nums1.length; i++) {
+            a[i] = nums1[i];
+        }
+
+        for (int i = 0; i < nums2.length; i++) {
+            a[i] = nums2[nums1.length + i];
+        }
+        List aList = Arrays.asList(a);
+        Collections.sort(aList);
+        int length = nums1.length + nums2.length;
+        int mid = length / 2;
+        if (length % 2 == 0) {
+            return ((Integer) aList.get(mid - 1) + (Integer) aList.get(mid)) / 2f;
+        } else {
+            return (Integer) aList.get(mid);
         }
     }
 }
