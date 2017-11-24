@@ -1,50 +1,48 @@
 package hash_table;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LeetCode594 {
     public static void main(String[] args) {
         LeetCode594 leetCode594 = new LeetCode594();
-        System.out.println(leetCode594.findLHS(new int[]{2, 2, 2, 2, 2, 2, 2, 3, 1, 0, 0, 0, 3, 1, -1, 0, 1, 1, 0, 0, 1, 1, 2, 2, 2, 0, 1, 2, 2, 3, 2}));
+//        [1, 3, 5, 7, 9, 11, 13, 15, 17]
+        System.out.println(leetCode594.findLHS(new int[]{1, 3, 2, 2, 5, 2, 3, 7}));
     }
 
     public int findLHS(int[] nums) {
-        List<List<Integer>> remember = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            boolean handle = false;
-            for (int j = 0; j < remember.size(); j++) {
-                boolean harmonious = true;
-                List<Integer> rememberItem = remember.get(j);
-                for (int z = 0; z < rememberItem.size(); z++) {
-                    int item = rememberItem.get(z);
-                    if ((item - nums[i]) > 1 || nums[i] - item > 1) {
-                        harmonious = false;
-                        break;
-                    }
-                }
-                if (harmonious) {
-                    handle = true;
-                    rememberItem.add(nums[i]);
-                }
-            }
-            if (!handle) {
-                List<Integer> newRememberItem = new ArrayList<>();
-                newRememberItem.add(nums[i]);
-                remember.add(newRememberItem);
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        Arrays.sort(nums);
+        List<Integer> cntArray = new ArrayList<>();
+        List<Integer> valueArray = new ArrayList<>();
+        int cur = nums[0];
+        int curCnt = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (cur == nums[i]) {
+                curCnt++;
+            } else {
+                valueArray.add(cur);
+                cntArray.add(curCnt);
+                cur = nums[i];
+                curCnt = 1;
             }
         }
-        int maxSize = 0;
-        for (int i = 0; i < remember.size(); i++) {
-            List<Integer> temp = remember.get(i);
-            int length = temp.size();
-            int sum = 0;
-            for (int j = 0; j < length; j++) {
-                sum += temp.get(j);
-            }
-            if (sum % length != 0 && maxSize < length)
-                maxSize = length;
+        cntArray.add(curCnt);
+        valueArray.add(cur);
+        if (cntArray.size() <= 1) {
+            return 0;
         }
-        return maxSize;
+        int max = 0;
+        for (int i = 0; i < cntArray.size() - 1; i++) {
+            if (Math.abs(valueArray.get(i) - valueArray.get(i + 1)) == 1) {
+                if (max < cntArray.get(i) + cntArray.get(i + 1)) {
+                    max = cntArray.get(i) + cntArray.get(i + 1);
+                }
+            }
+        }
+        return max;
     }
 }
