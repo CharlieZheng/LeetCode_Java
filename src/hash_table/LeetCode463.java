@@ -3,8 +3,10 @@ package hash_table;
 public class LeetCode463 {
     public static void main(String[] args) {
         LeetCode463 leetCode463 = new LeetCode463();
-        int[][] grid = new int[][]{{1, 0, 1},
-                {1, 0, 1}, {1, 0, 1}};
+        int[][] grid = new int[][]{{0, 1, 0, 0},
+                {1, 1, 1, 0},
+                {0, 1, 0, 0},
+                {1, 1, 0, 0}};
         System.out.println(leetCode463.islandPerimeter(grid));
     }
 
@@ -16,9 +18,7 @@ public class LeetCode463 {
                 int item = row[j];
                 if (item == 1) {
                     int temp = itemSlideCount(grid, i, j);
-                    if (temp > 0) {
-                        sum += 4 - temp;
-                    }
+                    sum += 4 - temp;
                 }
             }
         }
