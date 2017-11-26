@@ -13,11 +13,17 @@ public class TreeNode {
         if (a == null) return;
         val = a[0];
         TreeNode curNode = this;
-        for (int i = 1; i < a.length - 1 && curNode != null; i=i+2) {
-            if (a[i] != null){ curNode.left = new TreeNode(a[i]); curNode = curNode.left;continue;}
+        for (int i = 1; i < a.length - 1 && curNode != null; i = i + 2) {
+            if (a[i] != null) {
+                curNode.left = new TreeNode(a[i]);
+                curNode = curNode.left;
+                continue;
+            }
             if (a[i + 1] != null) curNode.right = new TreeNode(a[i + 1]);
-            if (curNode.left != null){ curNode = curNode.left;}else
-            if (curNode.right != null) curNode = curNode.right;else curNode =null;
+            if (curNode.left != null) {
+                curNode = curNode.left;
+            } else if (curNode.right != null) curNode = curNode.right;
+            else curNode = null;
         }
     }
 
