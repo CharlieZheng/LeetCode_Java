@@ -1,6 +1,8 @@
 package tree;
 
-public class                                                                                                                  LeetCode563 {
+import java.util.Stack;
+
+public class LeetCode563 {
     public static void main(String[] args) {
         LeetCode563 leetCode563 = new LeetCode563();
         TreeNode treeNode = new TreeNode(1);
@@ -9,18 +11,13 @@ public class                                                                    
         System.out.println(leetCode563.findTilt(treeNode));
     }
 
+    private int findTiltChild(TreeNode treeNode) {
+        Stack stack = new Stack();
+        while (!stack.isEmpty()) {
+        }
+        return 0;
+    }
     public int findTilt(TreeNode root) {
-        int sum = 0;
-        if (root == null) {
-            return 0;
-        }
-        if (root.left == null && root.right == null) {
-            return 0;
-        }
-        if (root.left != null && root.left.left == null && root.left.right == null) {
-//            if ()
-        }
-        return findTilt(root.left) + findTilt(root.right);
-
+        return 0;
     }
 }
