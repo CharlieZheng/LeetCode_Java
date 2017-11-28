@@ -1,3 +1,5 @@
+package array;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,9 +11,9 @@ import java.util.List;
 public class LeetCode4 {
     public static void main(String[] args) {
         LeetCode4 leetCode4 = new LeetCode4();
-        int[] num1 = new int[]{};
-        int[] num2 = new int[]{1, 2, 3, 4};
-        leetCode4.findMedianSortedArrays(num1, num2);
+        int[] num1 = new int[]{4, 2};
+        int[] num2 = new int[]{1, 3};
+        System.out.println(leetCode4.findMedianSortedArrays(num1, num2));
     }
 
     /**
@@ -153,7 +155,8 @@ public class LeetCode4 {
             return mid / 2f;
         }
     }
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+
+    public double findMedianSortedArrays3(int[] nums1, int[] nums2) {
         int[] a = new int[nums1.length + nums2.length];
         for (int i = 0; i < nums1.length; i++) {
             a[i] = nums1[i];
@@ -170,6 +173,22 @@ public class LeetCode4 {
             return ((Integer) aList.get(mid - 1) + (Integer) aList.get(mid)) / 2f;
         } else {
             return (Integer) aList.get(mid);
+        }
+    }
+
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        List<Integer> nums = new ArrayList();
+        if (nums1 != null)
+            for (int i = 0; i < nums1.length; i++)
+                nums.add(nums1[i]);
+        if (nums2 != null)
+            for (int i = 0; i < nums2.length; i++)
+                nums.add(nums2[i]);
+        Collections.sort(nums);
+        if (nums.size() % 2 == 0) {
+            return (nums.get(nums.size() / 2 - 1) + nums.get(nums.size() / 2)) / 2f;
+        } else {
+            return nums.get(nums.size() / 2);
         }
     }
 }
