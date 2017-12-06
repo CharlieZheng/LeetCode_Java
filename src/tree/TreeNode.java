@@ -29,8 +29,21 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        return val +
-                ", " + (left != null ? left.toString() : "null") +
-                ", " + (right != null ? right.toString() : "null");
+        String leftString = "";
+        if (left != null) {
+            leftString = "[" + left.toString();
+        }
+        String rightString = "";
+        if (right != null) {
+            if (leftString.isEmpty()) {
+
+                rightString = "[, " + right.toString() + "]";
+            } else {
+                rightString = leftString + ", " + right.toString() + "]";
+            }
+        } else if (!leftString.isEmpty()) {
+            rightString = leftString + "]";
+        }
+        return val + rightString;
     }
 }
