@@ -11,13 +11,16 @@ public class LeetCode563 {
         System.out.println(leetCode563.findTilt(treeNode));
     }
 
-    private int findTiltChild(TreeNode treeNode) {
-        Stack stack = new Stack();
-        while (!stack.isEmpty()) {
-        }
-        return 0;
-    }
     public int findTilt(TreeNode root) {
-        return 0;
+        Stack stack = new Stack();
+        stack.push(root);
+        int result = 0;
+        while (!stack.isEmpty()) {
+            TreeNode cur = (TreeNode) stack.pop();
+            if (cur.left != null) stack.push(cur.left);
+            if (cur.right != null) stack.push(cur.right);
+            if (cur.left == null && cur.right == null) result = cur.val;
+        }
+        return result;
     }
 }
